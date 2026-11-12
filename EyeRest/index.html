@@ -1,0 +1,388 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+  >
+
+  <title>EyeRest</title>
+
+  <link
+    rel="stylesheet"
+    href="./style.css"
+  >
+</head>
+
+<body>
+  <main class="app-container">
+    <header class="app-header">
+      <h1>EyeRest</h1>
+
+      <p>
+        장시간 화면 작업 중 눈 휴식 행동을 지원하는
+        웹 프로토타입
+      </p>
+    </header>
+
+    <section class="card">
+      <h2>현재 눈 상태 자가점검</h2>
+
+      <p class="section-description">
+        현재 주관적으로 느끼는 불편 정도를 선택해 주세요.
+      </p>
+
+      <!-- 눈의 피로 -->
+      <div class="question">
+        <div class="question-header">
+          <div class="question-title">
+            <label for="fatigue">
+              눈의 피로
+            </label>
+
+            <button
+              type="button"
+              class="info-button"
+              aria-label="눈의 피로 설명 보기"
+              aria-expanded="false"
+              aria-controls="fatigueTooltip"
+            >
+              i
+            </button>
+
+            <div
+              id="fatigueTooltip"
+              class="info-tooltip"
+              role="tooltip"
+            >
+              눈이 무겁거나 쉽게 피곤하다고 느끼는 정도를
+              의미합니다.
+            </div>
+          </div>
+
+          <span class="question-score">
+            <strong id="fatigueValue">0</strong>점
+          </span>
+        </div>
+
+        <input
+          type="range"
+          id="fatigue"
+          min="0"
+          max="5"
+          value="0"
+          step="1"
+        >
+
+        <div class="range-labels">
+          <span>없음</span>
+          <span>매우 심함</span>
+        </div>
+      </div>
+
+      <!-- 건조감 -->
+      <div class="question">
+        <div class="question-header">
+          <div class="question-title">
+            <label for="dryness">
+              건조감
+            </label>
+
+            <button
+              type="button"
+              class="info-button"
+              aria-label="건조감 설명 보기"
+              aria-expanded="false"
+              aria-controls="drynessTooltip"
+            >
+              i
+            </button>
+
+            <div
+              id="drynessTooltip"
+              class="info-tooltip"
+              role="tooltip"
+            >
+              눈이 마르거나 뻑뻑하다고 느끼는 정도를
+              의미합니다.
+            </div>
+          </div>
+
+          <span class="question-score">
+            <strong id="drynessValue">0</strong>점
+          </span>
+        </div>
+
+        <input
+          type="range"
+          id="dryness"
+          min="0"
+          max="5"
+          value="0"
+          step="1"
+        >
+
+        <div class="range-labels">
+          <span>없음</span>
+          <span>매우 심함</span>
+        </div>
+      </div>
+
+      <!-- 흐릿함 -->
+      <div class="question">
+        <div class="question-header">
+          <div class="question-title">
+            <label for="blur">
+              흐릿함
+            </label>
+
+            <button
+              type="button"
+              class="info-button"
+              aria-label="흐릿함 설명 보기"
+              aria-expanded="false"
+              aria-controls="blurTooltip"
+            >
+              i
+            </button>
+
+            <div
+              id="blurTooltip"
+              class="info-tooltip"
+              role="tooltip"
+            >
+              화면이나 글자가 평소보다 선명하지 않게
+              보이는 정도를 의미합니다.
+            </div>
+          </div>
+
+          <span class="question-score">
+            <strong id="blurValue">0</strong>점
+          </span>
+        </div>
+
+        <input
+          type="range"
+          id="blur"
+          min="0"
+          max="5"
+          value="0"
+          step="1"
+        >
+
+        <div class="range-labels">
+          <span>없음</span>
+          <span>매우 심함</span>
+        </div>
+      </div>
+
+      <!-- 눈 통증·압박감 -->
+      <div class="question">
+        <div class="question-header">
+          <div class="question-title">
+            <label for="discomfort">
+              눈 통증·압박감
+            </label>
+
+            <button
+              type="button"
+              class="info-button"
+              aria-label="눈 통증과 압박감 설명 보기"
+              aria-expanded="false"
+              aria-controls="discomfortTooltip"
+            >
+              i
+            </button>
+
+            <div
+              id="discomfortTooltip"
+              class="info-tooltip"
+              role="tooltip"
+            >
+              눈 또는 눈 주변에서 느껴지는 통증,
+              압박감이나 화끈거림의 정도를 의미합니다.
+            </div>
+          </div>
+
+          <span class="question-score">
+            <strong id="discomfortValue">0</strong>점
+          </span>
+        </div>
+
+        <input
+          type="range"
+          id="discomfort"
+          min="0"
+          max="5"
+          value="0"
+          step="1"
+        >
+
+        <div class="range-labels">
+          <span>없음</span>
+          <span>매우 심함</span>
+        </div>
+      </div>
+
+      <!-- 점수 입력 기준 버튼 -->
+      <button
+        type="button"
+        id="scaleGuideButton"
+        class="guide-toggle-button"
+        aria-expanded="false"
+        aria-controls="scaleGuidePanel"
+      >
+        <span>점수 입력 기준 안내</span>
+
+        <span
+          class="toggle-icon"
+          aria-hidden="true"
+        >
+          ＋
+        </span>
+      </button>
+
+      <!-- 처음에는 숨김 -->
+      <div
+        id="scaleGuidePanel"
+        class="guide-panel"
+        hidden
+      >
+        <div class="scale-items">
+          <span>
+            <strong>0</strong>
+            없음
+          </span>
+
+          <span>
+            <strong>1</strong>
+            매우 약함
+          </span>
+
+          <span>
+            <strong>2</strong>
+            약함
+          </span>
+
+          <span>
+            <strong>3</strong>
+            보통
+          </span>
+
+          <span>
+            <strong>4</strong>
+            심함
+          </span>
+
+          <span>
+            <strong>5</strong>
+            매우 심함
+          </span>
+        </div>
+
+        <p>
+          현재 느끼는 주관적인 불편 정도를 입력해 주세요.
+          위 점수는 사용자의 입력을 돕기 위한 기준이며,
+          임상적 증상 척도나 질환 진단 기준이 아닙니다.
+        </p>
+      </div>
+
+      <button
+        type="button"
+        id="checkButton"
+        class="primary-button"
+      >
+        입력 결과 확인하기
+      </button>
+    </section>
+
+    <!-- 결과 카드 -->
+    <section
+      id="resultCard"
+      class="card hidden"
+      aria-live="polite"
+    >
+      <h2>입력 결과</h2>
+
+      <div
+        id="statusBadge"
+        class="status-badge"
+      >
+        현재 불편감
+      </div>
+
+      <p class="total-score-text">
+        입력 총점:
+        <strong id="totalScore">0</strong>점
+      </p>
+
+      <p id="resultMessage"></p>
+
+      <div class="prototype-notice">
+        입력 결과는 휴식 행동을 안내하기 위한 초기
+        프로토타입 정보이며, 의학적 상태나 질환을 의미하지
+        않습니다.
+      </div>
+    </section>
+
+    <!-- 이용 안내 버튼 -->
+    <section class="card compact-card">
+      <button
+        type="button"
+        id="usageGuideButton"
+        class="guide-toggle-button"
+        aria-expanded="false"
+        aria-controls="usageGuidePanel"
+      >
+        <span>이용 안내</span>
+
+        <span
+          class="toggle-icon"
+          aria-hidden="true"
+        >
+          ＋
+        </span>
+      </button>
+
+      <!-- 처음에는 숨김 -->
+      <div
+        id="usageGuidePanel"
+        class="guide-panel usage-guide-panel"
+        hidden
+      >
+        <h3>EyeRest 이용 전 확인해 주세요</h3>
+
+        <ul>
+          <li>
+            EyeRest는 사용자의 눈 휴식 행동을 지원하기 위한
+            웹 프로토타입입니다.
+          </li>
+
+          <li>
+            입력 결과는 사용자가 현재 주관적으로 느끼는
+            불편 정도를 정리한 정보입니다.
+          </li>
+
+          <li>
+            EyeRest는 질환을 진단하거나 치료하지 않습니다.
+          </li>
+
+          <li>
+            점수 구간과 안내 문구는 사용자 평가 전의
+            초기 설계 기준입니다.
+          </li>
+
+          <li>
+            갑작스러운 시력 변화, 지속적인 통증 또는 심한
+            불편이 있는 경우 의료 전문가와 상담해 주세요.
+          </li>
+        </ul>
+      </div>
+    </section>
+  </main>
+
+  <script src="./script.js"></script>
+</body>
+</html>
