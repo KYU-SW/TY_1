@@ -2,387 +2,196 @@
 <html lang="ko">
 <head>
   <meta charset="UTF-8">
-
-  <meta
-    name="viewport"
-    content="width=device-width, initial-scale=1.0"
-  >
-
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#eef5f4">
   <title>EyeRest</title>
-
-  <link
-    rel="stylesheet"
-    href="./style.css"
-  >
+  <link rel="stylesheet" href="./style.css">
 </head>
-
 <body>
   <main class="app-container">
     <header class="app-header">
       <h1>EyeRest</h1>
-
-      <p>
-        장시간 화면 작업 중 눈 휴식 행동을 지원하는
-        웹 프로토타입
-      </p>
+      <p>장시간 화면 작업 중 눈 휴식 행동을 지원하는 웹 프로토타입</p>
     </header>
 
-    <section class="card">
-      <h2>현재 눈 상태 자가점검</h2>
-
-      <p class="section-description">
-        현재 주관적으로 느끼는 불편 정도를 선택해 주세요.
-      </p>
-
-      <!-- 눈의 피로 -->
-      <div class="question">
-        <div class="question-header">
-          <div class="question-title">
-            <label for="fatigue">
-              눈의 피로
-            </label>
-
-            <button
-              type="button"
-              class="info-button"
-              aria-label="눈의 피로 설명 보기"
-              aria-expanded="false"
-              aria-controls="fatigueTooltip"
-            >
-              i
-            </button>
-
-            <div
-              id="fatigueTooltip"
-              class="info-tooltip"
-              role="tooltip"
-            >
-              눈이 무겁거나 쉽게 피곤하다고 느끼는 정도를
-              의미합니다.
-            </div>
-          </div>
-
-          <span class="question-score">
-            <strong id="fatigueValue">0</strong>점
-          </span>
+    <section id="checkupCard" class="card" aria-labelledby="checkupHeading">
+      <div class="checkup-header-box">
+        <div class="checkup-title-area">
+          <h2 id="checkupHeading">현재 눈 상태 자가점검</h2>
+          <p class="section-description">현재 주관적으로 느끼는 불편 정도를 선택해 주세요.</p>
         </div>
-
-        <input
-          type="range"
-          id="fatigue"
-          min="0"
-          max="5"
-          value="0"
-          step="1"
-        >
-
-        <div class="range-labels">
-          <span>없음</span>
-          <span>매우 심함</span>
+        <div class="checkup-guide-buttons" aria-label="도움말">
+          <button type="button" id="scaleGuideButton" class="header-guide-button" aria-expanded="false" aria-controls="scaleGuidePanel">
+            점수 입력 기준
+          </button>
+          <button type="button" id="usageGuideButton" class="header-guide-button" aria-expanded="false" aria-controls="usageGuidePanel">
+            이용 안내
+          </button>
         </div>
       </div>
 
-      <!-- 건조감 -->
-      <div class="question">
-        <div class="question-header">
-          <div class="question-title">
-            <label for="dryness">
-              건조감
-            </label>
-
-            <button
-              type="button"
-              class="info-button"
-              aria-label="건조감 설명 보기"
-              aria-expanded="false"
-              aria-controls="drynessTooltip"
-            >
-              i
-            </button>
-
-            <div
-              id="drynessTooltip"
-              class="info-tooltip"
-              role="tooltip"
-            >
-              눈이 마르거나 뻑뻑하다고 느끼는 정도를
-              의미합니다.
-            </div>
-          </div>
-
-          <span class="question-score">
-            <strong id="drynessValue">0</strong>점
-          </span>
+      <div id="scaleGuidePanel" class="header-guide-panel" hidden>
+        <div class="guide-panel-title">
+          <strong>점수 입력 기준</strong>
+          <button type="button" class="panel-close-button" data-close-panel="scaleGuidePanel" aria-label="점수 입력 기준 닫기">×</button>
         </div>
-
-        <input
-          type="range"
-          id="dryness"
-          min="0"
-          max="5"
-          value="0"
-          step="1"
-        >
-
-        <div class="range-labels">
-          <span>없음</span>
-          <span>매우 심함</span>
+        <div class="scale-items" aria-label="0점 없음, 1점 매우 약함, 2점 약함, 3점 보통, 4점 심함, 5점 매우 심함">
+          <span><strong>0</strong>없음</span>
+          <span><strong>1</strong>매우 약함</span>
+          <span><strong>2</strong>약함</span>
+          <span><strong>3</strong>보통</span>
+          <span><strong>4</strong>심함</span>
+          <span><strong>5</strong>매우 심함</span>
         </div>
+        <p>현재 주관적으로 느끼는 불편 정도를 입력해 주세요. 이 점수는 입력을 돕기 위한 기준이며 임상적 증상 척도나 진단 기준이 아닙니다.</p>
       </div>
 
-      <!-- 흐릿함 -->
-      <div class="question">
-        <div class="question-header">
-          <div class="question-title">
-            <label for="blur">
-              흐릿함
-            </label>
-
-            <button
-              type="button"
-              class="info-button"
-              aria-label="흐릿함 설명 보기"
-              aria-expanded="false"
-              aria-controls="blurTooltip"
-            >
-              i
-            </button>
-
-            <div
-              id="blurTooltip"
-              class="info-tooltip"
-              role="tooltip"
-            >
-              화면이나 글자가 평소보다 선명하지 않게
-              보이는 정도를 의미합니다.
-            </div>
-          </div>
-
-          <span class="question-score">
-            <strong id="blurValue">0</strong>점
-          </span>
+      <div id="usageGuidePanel" class="header-guide-panel" hidden>
+        <div class="guide-panel-title">
+          <strong>EyeRest 이용 안내</strong>
+          <button type="button" class="panel-close-button" data-close-panel="usageGuidePanel" aria-label="이용 안내 닫기">×</button>
         </div>
-
-        <input
-          type="range"
-          id="blur"
-          min="0"
-          max="5"
-          value="0"
-          step="1"
-        >
-
-        <div class="range-labels">
-          <span>없음</span>
-          <span>매우 심함</span>
-        </div>
-      </div>
-
-      <!-- 눈 통증·압박감 -->
-      <div class="question">
-        <div class="question-header">
-          <div class="question-title">
-            <label for="discomfort">
-              눈 통증·압박감
-            </label>
-
-            <button
-              type="button"
-              class="info-button"
-              aria-label="눈 통증과 압박감 설명 보기"
-              aria-expanded="false"
-              aria-controls="discomfortTooltip"
-            >
-              i
-            </button>
-
-            <div
-              id="discomfortTooltip"
-              class="info-tooltip"
-              role="tooltip"
-            >
-              눈 또는 눈 주변에서 느껴지는 통증,
-              압박감이나 화끈거림의 정도를 의미합니다.
-            </div>
-          </div>
-
-          <span class="question-score">
-            <strong id="discomfortValue">0</strong>점
-          </span>
-        </div>
-
-        <input
-          type="range"
-          id="discomfort"
-          min="0"
-          max="5"
-          value="0"
-          step="1"
-        >
-
-        <div class="range-labels">
-          <span>없음</span>
-          <span>매우 심함</span>
-        </div>
-      </div>
-
-      <!-- 점수 입력 기준 버튼 -->
-      <button
-        type="button"
-        id="scaleGuideButton"
-        class="guide-toggle-button"
-        aria-expanded="false"
-        aria-controls="scaleGuidePanel"
-      >
-        <span>점수 입력 기준 안내</span>
-
-        <span
-          class="toggle-icon"
-          aria-hidden="true"
-        >
-          ＋
-        </span>
-      </button>
-
-      <!-- 처음에는 숨김 -->
-      <div
-        id="scaleGuidePanel"
-        class="guide-panel"
-        hidden
-      >
-        <div class="scale-items">
-          <span>
-            <strong>0</strong>
-            없음
-          </span>
-
-          <span>
-            <strong>1</strong>
-            매우 약함
-          </span>
-
-          <span>
-            <strong>2</strong>
-            약함
-          </span>
-
-          <span>
-            <strong>3</strong>
-            보통
-          </span>
-
-          <span>
-            <strong>4</strong>
-            심함
-          </span>
-
-          <span>
-            <strong>5</strong>
-            매우 심함
-          </span>
-        </div>
-
-        <p>
-          현재 느끼는 주관적인 불편 정도를 입력해 주세요.
-          위 점수는 사용자의 입력을 돕기 위한 기준이며,
-          임상적 증상 척도나 질환 진단 기준이 아닙니다.
-        </p>
-      </div>
-
-      <button
-        type="button"
-        id="checkButton"
-        class="primary-button"
-      >
-        입력 결과 확인하기
-      </button>
-    </section>
-
-    <!-- 결과 카드 -->
-    <section
-      id="resultCard"
-      class="card hidden"
-      aria-live="polite"
-    >
-      <h2>입력 결과</h2>
-
-      <div
-        id="statusBadge"
-        class="status-badge"
-      >
-        현재 불편감
-      </div>
-
-      <p class="total-score-text">
-        입력 총점:
-        <strong id="totalScore">0</strong>점
-      </p>
-
-      <p id="resultMessage"></p>
-
-      <div class="prototype-notice">
-        입력 결과는 휴식 행동을 안내하기 위한 초기
-        프로토타입 정보이며, 의학적 상태나 질환을 의미하지
-        않습니다.
-      </div>
-    </section>
-
-    <!-- 이용 안내 버튼 -->
-    <section class="card compact-card">
-      <button
-        type="button"
-        id="usageGuideButton"
-        class="guide-toggle-button"
-        aria-expanded="false"
-        aria-controls="usageGuidePanel"
-      >
-        <span>이용 안내</span>
-
-        <span
-          class="toggle-icon"
-          aria-hidden="true"
-        >
-          ＋
-        </span>
-      </button>
-
-      <!-- 처음에는 숨김 -->
-      <div
-        id="usageGuidePanel"
-        class="guide-panel usage-guide-panel"
-        hidden
-      >
-        <h3>EyeRest 이용 전 확인해 주세요</h3>
-
-        <ul>
-          <li>
-            EyeRest는 사용자의 눈 휴식 행동을 지원하기 위한
-            웹 프로토타입입니다.
-          </li>
-
-          <li>
-            입력 결과는 사용자가 현재 주관적으로 느끼는
-            불편 정도를 정리한 정보입니다.
-          </li>
-
-          <li>
-            EyeRest는 질환을 진단하거나 치료하지 않습니다.
-          </li>
-
-          <li>
-            점수 구간과 안내 문구는 사용자 평가 전의
-            초기 설계 기준입니다.
-          </li>
-
-          <li>
-            갑작스러운 시력 변화, 지속적인 통증 또는 심한
-            불편이 있는 경우 의료 전문가와 상담해 주세요.
-          </li>
+        <ul class="usage-guide-list">
+          <li>EyeRest는 화면 작업 중 눈 휴식 행동을 돕기 위한 웹 프로토타입입니다.</li>
+          <li>점수와 구간은 사용자 평가 전의 초기 설계 기준이며 의학적 상태를 판정하지 않습니다.</li>
+          <li>작업시간은 사용자가 선택합니다. 점수 구간이 작업시간을 자동으로 정하지 않습니다.</li>
+          <li>입력과 세션 기록은 저장하거나 서버로 전송하지 않습니다.</li>
+          <li>갑작스러운 시력 변화, 지속적인 통증 또는 심한 불편이 있으면 의료 전문가와 상담해 주세요.</li>
         </ul>
       </div>
-    </section>
-  </main>
 
+      <div class="question">
+        <div class="question-header">
+          <div class="question-title">
+            <label for="fatigue">눈의 피로</label>
+            <button type="button" class="info-button" aria-label="눈의 피로 설명 보기" aria-expanded="false" aria-controls="fatigueTooltip">i</button>
+            <span id="fatigueTooltip" class="info-tooltip" role="tooltip">눈이 무겁거나 쉽게 피곤하다고 느끼는 정도입니다.</span>
+          </div>
+          <span class="question-score"><strong id="fatigueValue">0</strong>점</span>
+        </div>
+        <input type="range" id="fatigue" min="0" max="5" value="0" step="1" aria-label="눈의 피로 점수">
+        <div class="range-labels"><span>없음</span><span>매우 심함</span></div>
+      </div>
+
+      <div class="question">
+        <div class="question-header">
+          <div class="question-title">
+            <label for="dryness">건조감</label>
+            <button type="button" class="info-button" aria-label="건조감 설명 보기" aria-expanded="false" aria-controls="drynessTooltip">i</button>
+            <span id="drynessTooltip" class="info-tooltip" role="tooltip">눈이 마르거나 뻑뻑하다고 느끼는 정도입니다.</span>
+          </div>
+          <span class="question-score"><strong id="drynessValue">0</strong>점</span>
+        </div>
+        <input type="range" id="dryness" min="0" max="5" value="0" step="1" aria-label="건조감 점수">
+        <div class="range-labels"><span>없음</span><span>매우 심함</span></div>
+      </div>
+
+      <div class="question">
+        <div class="question-header">
+          <div class="question-title">
+            <label for="blur">흐릿함</label>
+            <button type="button" class="info-button" aria-label="흐릿함 설명 보기" aria-expanded="false" aria-controls="blurTooltip">i</button>
+            <span id="blurTooltip" class="info-tooltip" role="tooltip">화면이나 글자가 평소보다 선명하지 않게 보이는 정도입니다.</span>
+          </div>
+          <span class="question-score"><strong id="blurValue">0</strong>점</span>
+        </div>
+        <input type="range" id="blur" min="0" max="5" value="0" step="1" aria-label="흐릿함 점수">
+        <div class="range-labels"><span>없음</span><span>매우 심함</span></div>
+      </div>
+
+      <div class="question">
+        <div class="question-header">
+          <div class="question-title">
+            <label for="discomfort">눈 통증·압박감</label>
+            <button type="button" class="info-button" aria-label="눈 통증과 압박감 설명 보기" aria-expanded="false" aria-controls="discomfortTooltip">i</button>
+            <span id="discomfortTooltip" class="info-tooltip" role="tooltip">눈 또는 눈 주변에서 느껴지는 통증, 압박감이나 화끈거림의 정도입니다.</span>
+          </div>
+          <span class="question-score"><strong id="discomfortValue">0</strong>점</span>
+        </div>
+        <input type="range" id="discomfort" min="0" max="5" value="0" step="1" aria-label="눈 통증·압박감 점수">
+        <div class="range-labels"><span>없음</span><span>매우 심함</span></div>
+      </div>
+
+      <p class="scale-note">각 항목은 현재 느끼는 정도를 선택해 주세요. 점수 구간은 초기 프로토타입 기준입니다.</p>
+      <button type="button" id="checkButton" class="primary-button">입력 결과 확인하기</button>
+    </section>
+
+    <section id="resultCard" class="card result-card" aria-labelledby="resultHeading" hidden>
+      <h2 id="resultHeading">입력 결과와 작업시간 선택</h2>
+      <div id="statusBadge" class="status-badge">현재 불편감</div>
+      <p class="total-score-text">입력 총점: <strong id="totalScore">0</strong>점 / 20점</p>
+      <p id="resultMessage" class="result-message"></p>
+      <div class="prototype-notice">
+        이 결과는 사용자가 입력한 내용을 요약한 정보이며 질환의 진단이나 치료 효과를 의미하지 않습니다.
+      </div>
+
+      <div class="time-selection">
+        <div>
+          <h3>작업시간 선택</h3>
+          <p id="timeSuggestion">원하는 작업시간을 직접 선택해 주세요. 점수 구간은 작업시간을 자동으로 정하지 않습니다.</p>
+        </div>
+        <div class="time-option-group" role="group" aria-label="작업시간 선택">
+          <button type="button" class="time-option" data-minutes="10" aria-pressed="false">10분</button>
+          <button type="button" class="time-option" data-minutes="15" aria-pressed="false">15분</button>
+          <button type="button" class="time-option selected" data-minutes="20" aria-pressed="true">20분</button>
+        </div>
+        <div class="custom-time">
+          <label for="customWorkMinutes">직접 설정 (1~120분)</label>
+          <div class="custom-time-controls">
+            <input type="number" id="customWorkMinutes" min="1" max="120" step="1" inputmode="numeric" placeholder="분 입력">
+            <button type="button" id="applyCustomTimeButton" class="secondary-button">적용</button>
+          </div>
+          <p id="timeSelectionError" class="field-error" role="alert" hidden></p>
+        </div>
+        <p class="selected-time-text">선택한 작업시간: <strong id="selectedWorkMinutes">20</strong>분</p>
+        <button type="button" id="startSessionButton" class="primary-button">작업 시작</button>
+      </div>
+    </section>
+
+    <section id="workCard" class="card timer-card" aria-labelledby="workHeading" hidden>
+      <p class="eyebrow">작업 중</p>
+      <h2 id="workHeading">선택한 시간 동안 작업해 보세요</h2>
+      <p class="timer-caption">이번 작업 주기 <strong id="workCycleLabel">20분</strong></p>
+      <div id="workTimer" class="timer-display" role="timer" aria-label="남은 작업시간">20:00</div>
+      <div id="workProgress" class="work-progress" role="progressbar" aria-label="작업 주기 진행률" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0">
+        <div id="workProgressFill" class="work-progress-fill"></div>
+      </div>
+      <p id="workStatus" class="timer-status" aria-live="polite">타이머가 진행되는 동안의 시간만 실제 작업시간에 합산됩니다.</p>
+      <div class="timer-actions">
+        <button type="button" id="pauseResumeButton" class="secondary-button">일시 정지</button>
+        <button type="button" id="endSessionButton" class="text-button">세션 종료</button>
+      </div>
+    </section>
+
+    <section id="breakCard" class="card timer-card break-card" aria-labelledby="breakHeading" hidden>
+      <p class="eyebrow">눈 휴식</p>
+      <h2 id="breakHeading">화면에서 시선을 떼고 잠시 쉬어 주세요</h2>
+      <p class="break-instruction">편안한 곳을 바라보며 20초간 눈을 쉬어 주세요. 이 시간은 초기 프로토타입 설정입니다.</p>
+      <div id="breakTimer" class="timer-display break-timer" role="timer" aria-label="남은 휴식시간">00:20</div>
+      <p id="breakStatus" class="timer-status" aria-live="polite">휴식 시간이 끝나면 완료를 기록할 수 있습니다.</p>
+      <div class="timer-actions break-actions">
+        <button type="button" id="completeBreakButton" class="primary-button" disabled>20초 휴식 중</button>
+        <button type="button" id="postponeBreakButton" class="secondary-button">휴식 연기하고 계속 작업</button>
+        <button type="button" id="endSessionFromBreakButton" class="text-button">세션 종료</button>
+      </div>
+    </section>
+
+    <section id="sessionResultCard" class="card" aria-labelledby="sessionResultHeading" hidden>
+      <p class="eyebrow">세션 기록</p>
+      <h2 id="sessionResultHeading">이번 세션 결과</h2>
+      <div class="session-summary">
+        <div class="summary-item"><span>실제 작업시간</span><strong id="totalWorkTime">00:00</strong></div>
+        <div class="summary-item"><span>선택한 작업 주기</span><strong><span id="resultWorkMinutes">20</span>분</strong></div>
+        <div class="summary-item"><span>휴식 완료</span><strong><span id="resultCompletedBreaks">0</span>회</strong></div>
+        <div class="summary-item"><span>휴식 연기</span><strong><span id="resultPostponedBreaks">0</span>회</strong></div>
+        <div class="summary-item"><span>휴식 수행률</span><strong id="completionRate">0%</strong></div>
+      </div>
+      <p class="prototype-notice">휴식 수행률은 완료 횟수를 완료와 연기 응답 횟수의 합으로 나누어 계산합니다. 이 결과는 행동 기록이며 의학적 상태를 의미하지 않습니다.</p>
+      <button type="button" id="newSessionButton" class="primary-button">새 세션 시작</button>
+    </section>
+
+    <p id="liveStatus" class="sr-only" aria-live="polite"></p>
+  </main>
   <script src="./script.js"></script>
 </body>
 </html>
