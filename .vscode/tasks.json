@@ -1,0 +1,35 @@
+{
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "label": "EyeRest: 로컬 서버 실행",
+      "type": "process",
+      "command": "${env:LOCALAPPDATA}/Programs/Python/Python315/python.exe",
+      "args": [
+        "-m",
+        "http.server",
+        "8080",
+        "--directory",
+        "${workspaceFolder}/EyeRest"
+      ],
+      "isBackground": true,
+      "problemMatcher": {
+        "owner": "custom",
+        "pattern": {
+          "regexp": "^(EyeRest problem matcher sentinel: (.*))$",
+          "file": 1,
+          "message": 2
+        },
+        "background": {
+          "activeOnStart": true,
+          "endsPattern": "^Serving HTTP on "
+        }
+      },
+      "presentation": {
+        "reveal": "always",
+        "panel": "dedicated",
+        "clear": false
+      }
+    }
+  ]
+}
