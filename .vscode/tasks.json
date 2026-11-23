@@ -4,7 +4,7 @@
     {
       "label": "EyeRest: 로컬 서버 실행",
       "type": "process",
-      "command": "py",
+      "command": "${env:LOCALAPPDATA}/Programs/Python/Python315/python.exe",
       "args": [
         "-m",
         "http.server",
