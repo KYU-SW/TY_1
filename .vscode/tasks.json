@@ -15,11 +15,11 @@
       "isBackground": true,
       "problemMatcher": {
         "owner": "custom",
-        "pattern": [
-          {
-            "regexp": "^(.*)$"
-          }
-        ],
+        "pattern": {
+          "regexp": "^(EyeRest problem matcher sentinel: (.*))$",
+          "file": 1,
+          "message": 2
+        },
         "background": {
           "activeOnStart": true,
           "endsPattern": "^Serving HTTP on "
