@@ -1,5 +1,12 @@
 # EyeRest
 
+## 바로 실행하기
+[EyeRest 웹 앱 열기](https://kyu-sw.github.io/TY_1-1/EyeRest/)
+
+스마트폰 카메라로 아래 QR 코드를 스캔하면 앱으로 이동합니다.
+
+<img src="EyeRest/qr-code.png" alt="EyeRest 실행 링크 QR 코드" width="200">
+
 > 장시간 화면 작업 중 사용자가 눈 휴식 행동을 실천하도록 돕는 웹 프로토타입입니다.
 
 ## 프로젝트 소개
@@ -49,7 +56,7 @@ EyeRest는 의료기기나 진단·치료 프로그램이 아닙니다. 입력 �
 - [ ] 보조기기와 접근성 동작 점검
 - [ ] 작업 후 상태 재입력 및 전후 비교
 - [ ] 세션 기록 저장, 최근 기록 조회 및 그래프
-- [ ] GitHub Pages 배포
+- [x] GitHub Pages 공개 배포 (main 브랜치 루트)
 
 ## 근거와 설계 가정
 
